@@ -20,10 +20,10 @@
         </div>
       </div>
       <div class='ui bottom attached green basic button' v-if="todo.done">
-        Completed
+        All done!
       </div>
-      <div class='ui bottom attached red basic button' v-else>
-        Complete
+      <div class='ui bottom attached red basic button' v-else v-on:click="completeTodo(todo)">
+        Finish todo.
       </div>
     </div>
     
@@ -68,6 +68,9 @@
       deleteForm(todo) {
         this.$emit('delete-todo', todo);
       },
+      completeTodo(todo) {
+        this.todo.done = true
+      }
     },
   };
 </script>
