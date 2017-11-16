@@ -69,7 +69,7 @@
         this.$emit('delete-todo', todo);
       },
       completeTodo(todo) {
-        this.todo.done = true
+        this.$emit('completed-todo', todo)
       }
     },
   };

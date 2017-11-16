@@ -2,7 +2,9 @@
   <section>
     <todo v-on:delete-todo="deleteTodoItem"
           v-for="todo in todos"
-          v-bind:todo="todo"></todo>
+          v-bind:todo="todo"
+          v-on:completed-todo="completeTodo"
+          :todo.sync="todo"></todo>
     <create-todo v-on:create-todo="addTodoItem"></create-todo>
   </section>
 </template>
@@ -18,12 +20,17 @@
       CreateTodo,
     },
     methods: {
+      getIndexOnTodo(item) {
+        return this.todos.indexOf(item);
+      },
       deleteTodoItem(toDelete) {
-        const todoIndex = this.todos.indexOf(toDelete);
-        this.todos.splice(todoIndex, 1);
+        this.todos.splice(this.getIndexOnTodo(toDelete), 1);
       },
       addTodoItem(listToAdd) {
         this.todos.push(listToAdd)
+      },
+      completeTodo(listToComplete) {
+        this.todos[this.getIndexOnTodo(listToComplete)].done = true;
       }
     }
   };

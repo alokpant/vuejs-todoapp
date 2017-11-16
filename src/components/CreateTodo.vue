@@ -6,7 +6,10 @@
           <div class='ui form'>
             <div class='field'>
               <label>Title</label>
-              <input v-model="todoTitle" type='text' ref='title' defaultValue="">
+              <input ref="todoTitle" 
+                     v-model="todoTitle"
+                     type='text'
+                     defaultValue="">
             </div>
             <div class='field'>
               <label>Project</label>
@@ -42,6 +45,11 @@
       }
     },
     methods: {
+      resetForm () {
+        this.todoTitle = '';
+        this.todoProject = '';
+        this.isCreating = false;
+      },
       openForm () {
         this.isCreating = true;
       },
@@ -51,8 +59,6 @@
       addTodo() {
         let title = (this.todoTitle).trim(),
             project = (this.todoProject).trim();
-            
-        console.log(title + ' ' + project)
         if (title != '' && project != '') {
           this.$emit('create-todo', {
             title,
@@ -61,7 +67,7 @@
           })
         }
         
-        this.isCreating = false;
+        this.resetForm();
       }
     }
   }
