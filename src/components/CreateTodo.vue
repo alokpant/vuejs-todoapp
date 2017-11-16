@@ -6,7 +6,7 @@
           <div class='ui form'>
             <div class='field'>
               <label>Title</label>
-              <input ref="todoTitle" 
+              <input ref="title" 
                      v-model="todoTitle"
                      type='text'
                      defaultValue="">
@@ -52,6 +52,7 @@
       },
       openForm () {
         this.isCreating = true;
+        this.$refs.title.focus();
       },
       closeForm () {
         this.isCreating = false;
